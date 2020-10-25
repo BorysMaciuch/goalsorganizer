@@ -12,8 +12,9 @@ const App = () => {
     <NavBar/>
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route component={ErrorPage}/>
       <Route path="/goalslist" component={GoalsList}/>
+      <Route component={ErrorPage}/>
+
     </Switch>
     </>
   );
