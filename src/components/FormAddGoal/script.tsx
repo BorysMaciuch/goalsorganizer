@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { ButtonHTMLAttributes, useState } from "react";
+import {Goal} from '../../pages/GoalsList/script'
 
-const FormAddGoal: React.FC = () => {
+export interface FormAddGoal {
+    addGoal: (goal: Goal) => void
+}
+
+const FormAddGoal: React.FC<FormAddGoal> = ({addGoal}) => {
+
   const [goalTitle, setGoalTitle] = useState("");
   const handleChangeGoalTitle = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
     setGoalTitle(e.target.value);
   };
-  console.log(goalTitle);
+  const handleSubmitGoal = (e: React.FormEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+    addGoal({title: goalTitle})
+    setGoalTitle('')
+  }
   return (
     <form>
       <label>Goal title</label>
-      <input onChange={handleChangeGoalTitle} placeholder="Goal title..." />
-      <button>Submit</button>
+      <input value={goalTitle} onChange={handleChangeGoalTitle} placeholder="Goal title..." />
+      <button onClick={handleSubmitGoal}>Submit</button>
     </form>
   );
 };

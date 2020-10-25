@@ -1,12 +1,27 @@
-import React from 'react'
-import FormAddGoal from '../../components/FormAddGoal/script'
-const GoalsList: React.FC = () => {
-    return (
-        <div>
-        <div>Goals List</div>
-        <FormAddGoal/>
-        </div>
-    )
-}
+import React, { useState } from "react";
+import FormAddGoal from "../../components/FormAddGoal/script";
 
-export default GoalsList
+export interface Goal {
+  title: string;
+}
+const GoalsList: React.FC = () => {
+  const [goals, setGoals] = useState<Array<Goal>>([]);
+
+  const AddGoal = (goal: Goal): void => {
+    setGoals([...goals, goal]);
+  };
+  console.log(goals)
+  return (
+    <div>
+      <div>Goals List</div>
+      <FormAddGoal addGoal={AddGoal}/>
+      <div>
+        {goals.map((goal: Goal, i) => (
+          <div key={i}>{goal.title}</div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default GoalsList;
