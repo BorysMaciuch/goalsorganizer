@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormAddGoal from "../../components/FormAddGoal/script";
 import FormAddActionPoint from "../../components/FormAddActionPoint/script";
-
+import {Container} from '../../components/Container/styled'
 
 export interface Goal {
   title: string;
@@ -26,7 +26,7 @@ const GoalsList: React.FC = () => {
   console.log(goals);
   console.log(actionPoints)
   return (
-    <div>
+    <Container>
       <div>Goals List</div>
       <FormAddGoal addGoal={AddGoal} />
       <div>
@@ -39,7 +39,7 @@ const GoalsList: React.FC = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

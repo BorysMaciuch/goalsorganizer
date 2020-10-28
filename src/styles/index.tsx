@@ -3,6 +3,10 @@ import { createGlobalStyle } from "styled-components";
 export const theme = {
 
     bg: "#1d3557",
+    white: '#f1faee',
+    radius: {
+        normal: '10px   '
+    }
   }
 
 export const GlobalStyles = createGlobalStyle`
