@@ -1,11 +1,7 @@
 import React, { ButtonHTMLAttributes, useState } from "react";
-import {Goal} from '../../pages/GoalsList/script'
+import axios from 'axios'
 
-export interface FormAddGoal {
-    addGoal: (goal: Goal) => void
-}
-
-const FormAddGoal: React.FC<FormAddGoal> = ({addGoal}) => {
+const FormAddGoal: React.FC = () => {
 
   const [goalTitle, setGoalTitle] = useState("");
   const handleChangeGoalTitle = (
@@ -13,10 +9,18 @@ const FormAddGoal: React.FC<FormAddGoal> = ({addGoal}) => {
   ): void => {
     setGoalTitle(e.target.value);
   };
+
+  const addGoalHandler = (e: any) => {
+    e.preventDefault()
+    axios
+    .post('http://localhost:5000/goals/add-goal', {id: 2, title: goalTitle})
+    .catch((err) => console.log(err))
+
+  }
   const handleSubmitGoal = (e: React.FormEvent<HTMLButtonElement>) => {
       e.preventDefault()
-    addGoal({title: goalTitle})
     setGoalTitle('')
+    addGoalHandler(e)
   }
   return (
     <form>

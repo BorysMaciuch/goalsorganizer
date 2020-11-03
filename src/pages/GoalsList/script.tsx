@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormAddGoal from "../../components/FormAddGoal/script";
 import FormAddActionPoint from "../../components/FormAddActionPoint/script";
 import {Container} from '../../components/Container/styled'
+import axios from 'axios'
 
 export interface Goal {
   title: string;
@@ -17,18 +18,20 @@ export interface ActionPoint {
 const GoalsList: React.FC = () => {
   const [goals, setGoals] = useState<Array<Goal>>([]);
   const [actionPoints, setActionPoints] = useState<Array<any>>([])
-  const AddGoal = (goal: Goal): void => {
-    setGoals([...goals, goal]);
-  };
+  
   const AddActionPoint = (actionPoint: ActionPointDescription, title: string): void => {
     setActionPoints([...actionPoints, {[title]: actionPoint}])
   }
-  console.log(goals);
-  console.log(actionPoints)
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/goals")
+      .then((res) => setGoals(res.data));
+  }, [goals]);
+
   return (
     <Container>
       <div>Goals List</div>
-      <FormAddGoal addGoal={AddGoal} />
+      <FormAddGoal />
       <div>
         {goals.map((goal: Goal, i) => (
           <div key={i}>
