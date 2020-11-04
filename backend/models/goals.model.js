@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const goalsSchema = new Schema (
     {
-        id: {type: Number, required: true},
-        title: {type: String, required: true}
+        id: {type: String, required: true},
+        title: {type: String, required: true},
+        actionPoints: {type: Array, required: true}
     },
     {
         timestamps: true,

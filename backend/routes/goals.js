@@ -8,10 +8,10 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/add-goal').post((req, res) => {
-    const id = Number(req.body.id)
+    const id = req.body.id
     const title = req.body.title 
-
-    const newGoal = new Goal({id, title})
+    const actionPoints = req.body.actionPoints
+    const newGoal = new Goal({id, title, actionPoints})
     newGoal
     .save()
     .then(() => res.json('Goal added!'))
