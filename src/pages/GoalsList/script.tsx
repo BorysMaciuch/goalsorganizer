@@ -5,7 +5,9 @@ import {Container} from '../../components/Container/styled'
 import axios from 'axios'
 
 export interface Goal {
+  id: string;
   title: string;
+  actionPoints: Array<ActionPointDescription>;
 }
 
 export interface ActionPointDescription {
@@ -21,7 +23,9 @@ const GoalsList: React.FC = () => {
   
   const AddActionPoint = (actionPoint: ActionPointDescription, title: string): void => {
     setActionPoints([...actionPoints, {[title]: actionPoint}])
+    
   }
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/goals")
@@ -36,8 +40,8 @@ const GoalsList: React.FC = () => {
         {goals.map((goal: Goal, i) => (
           <div key={i}>
             <h3>{goal.title}</h3>
-            <FormAddActionPoint addActionPoint={AddActionPoint} goalTitle={goal.title}/>
-            <div>{actionPoints.map(el => el[goal.title] ? <div>{el[goal.title].description}</div> : null)}</div>
+            <FormAddActionPoint addActionPoint={AddActionPoint} goalTitle={goal.title} id={goal.id}/>
+            <div>{goal.actionPoints.map(actionPoint =>  <div>{actionPoint.description}</div>)}</div>
             <button>Edit</button>
           </div>
         ))}

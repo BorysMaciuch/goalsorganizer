@@ -4,9 +4,10 @@ import {ActionPoint, ActionPointDescription} from '../../pages/GoalsList/script'
 export interface FormAddActionPoint {
     addActionPoint: (actionPoint: ActionPointDescription, title: string) => void
     goalTitle: string;
+    id: string;
 }
 
-const FormAddActionPoint: React.FC<FormAddActionPoint> = ({addActionPoint, goalTitle}) => {
+const FormAddActionPoint: React.FC<FormAddActionPoint> = ({addActionPoint, goalTitle, id}) => {
 
   const [actionPoint, setActionPoint] = useState("");
   const handleChangeActionPoint = (

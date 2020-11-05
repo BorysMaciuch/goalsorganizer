@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes, useState } from "react";
 import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
 
 const FormAddGoal: React.FC = () => {
 
@@ -13,7 +14,7 @@ const FormAddGoal: React.FC = () => {
   const addGoalHandler = (e: any) => {
     e.preventDefault()
     axios
-    .post('http://localhost:5000/goals/add-goal', {id: 2, title: goalTitle})
+    .post('http://localhost:5000/goals/add-goal', {id: uuidv4(), title: goalTitle, actionPoints: []})
     .catch((err) => console.log(err))
 
   }
