@@ -20,7 +20,6 @@ connection.once('open', () => {
 })
 
 const goalsRouter = require('./routes/goals')
-
 app.use('/goals', goalsRouter)
 
 app.listen(port, () => {
