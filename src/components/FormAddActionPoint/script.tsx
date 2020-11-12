@@ -1,14 +1,13 @@
 import React, { ButtonHTMLAttributes, useState } from "react";
-import {ActionPoint, ActionPointDescription} from '../../pages/GoalsList/script'
+import { ActionPointDescription } from "../../pages/GoalsList/script";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 export interface FormAddActionPoint {
-    addActionPoint: (actionPoint: ActionPointDescription, title: string) => void
-    goalTitle: string;
-    id: string;
+  id: string;
 }
 
-const FormAddActionPoint: React.FC<FormAddActionPoint> = ({addActionPoint, goalTitle, id}) => {
-
+const FormAddActionPoint: React.FC<FormAddActionPoint> = ({ id }) => {
   const [actionPoint, setActionPoint] = useState("");
   const handleChangeActionPoint = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -16,14 +15,21 @@ const FormAddActionPoint: React.FC<FormAddActionPoint> = ({addActionPoint, goalT
     setActionPoint(e.target.value);
   };
   const handleSubmitActionPoint = (e: React.FormEvent<HTMLButtonElement>) => {
-      e.preventDefault()
-      addActionPoint({description: actionPoint}, goalTitle)
-    setActionPoint('')
-  }
+    e.preventDefault();
+    axios
+      .patch(`http://localhost:5000/goals/add-goal/${id}`, {
+        actionPoints: actionPoint,
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <form>
       <label>Action point description</label>
-      <input value={actionPoint} onChange={handleChangeActionPoint} placeholder="Action point description..." />
+      <input
+        value={actionPoint}
+        onChange={handleChangeActionPoint}
+        placeholder="Action point description..."
+      />
       <button onClick={handleSubmitActionPoint}>Submit</button>
     </form>
   );

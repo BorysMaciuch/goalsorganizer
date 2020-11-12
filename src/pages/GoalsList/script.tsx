@@ -8,21 +8,20 @@ export interface Goal {
   id: string;
   title: string;
   actionPoints: Array<ActionPointDescription>;
+  _id: string;
 }
 
 export interface ActionPointDescription {
   description: string;
 }
 
-export interface ActionPoint {
-  title: ActionPointDescription
-}
+
 const GoalsList: React.FC = () => {
   const [goals, setGoals] = useState<Array<Goal>>([]);
   const [actionPoints, setActionPoints] = useState<Array<any>>([])
   
-  const AddActionPoint = (actionPoint: ActionPointDescription, title: string): void => {
-    setActionPoints([...actionPoints, {[title]: actionPoint}])
+  const AddActionPoint = (actionPoint: ActionPointDescription): void => {
+    setActionPoints([...actionPoints, actionPoint])
     
   }
 
@@ -30,8 +29,8 @@ const GoalsList: React.FC = () => {
     axios
       .get("http://localhost:5000/goals")
       .then((res) => setGoals(res.data));
-  }, [goals]);
-
+  }, []);
+  console.log(goals)
   return (
     <Container>
       <div>Goals List</div>
@@ -40,7 +39,7 @@ const GoalsList: React.FC = () => {
         {goals.map((goal: Goal, i) => (
           <div key={i}>
             <h3>{goal.title}</h3>
-            <FormAddActionPoint addActionPoint={AddActionPoint} goalTitle={goal.title} id={goal.id}/>
+            <FormAddActionPoint id={goal._id}/>
             <div>{goal.actionPoints.map(actionPoint =>  <div>{actionPoint.description}</div>)}</div>
             <button>Edit</button>
           </div>
