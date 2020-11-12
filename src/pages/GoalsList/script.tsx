@@ -3,6 +3,7 @@ import FormAddGoal from "../../components/FormAddGoal/script";
 import FormAddActionPoint from "../../components/FormAddActionPoint/script";
 import {Container} from '../../components/Container/styled'
 import axios from 'axios'
+import { v4 as uuidv4 } from "uuid";
 
 export interface Goal {
   id: string;
@@ -18,12 +19,6 @@ export interface ActionPointDescription {
 
 const GoalsList: React.FC = () => {
   const [goals, setGoals] = useState<Array<Goal>>([]);
-  const [actionPoints, setActionPoints] = useState<Array<any>>([])
-  
-  const AddActionPoint = (actionPoint: ActionPointDescription): void => {
-    setActionPoints([...actionPoints, actionPoint])
-    
-  }
 
   useEffect(() => {
     axios
@@ -36,11 +31,11 @@ const GoalsList: React.FC = () => {
       <div>Goals List</div>
       <FormAddGoal />
       <div>
-        {goals.map((goal: Goal, i) => (
-          <div key={i}>
+        {goals.map((goal: Goal) => (
+          <div key={uuidv4()}>
             <h3>{goal.title}</h3>
             <FormAddActionPoint id={goal._id}/>
-            <div>{goal.actionPoints.map(actionPoint =>  <div>{actionPoint.description}</div>)}</div>
+            <div>{goal.actionPoints.map(actionPoint =>  <div key={uuidv4()}>{actionPoint.description}</div>)}</div>
             <button>Edit</button>
           </div>
         ))}

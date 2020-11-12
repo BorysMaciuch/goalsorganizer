@@ -1,13 +1,11 @@
-import React, { ButtonHTMLAttributes, useState } from "react";
-import { ActionPointDescription } from "../../pages/GoalsList/script";
+import React, { useState } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
-export interface FormAddActionPoint {
+export interface FormAddActionPointType {
   id: string;
 }
 
-const FormAddActionPoint: React.FC<FormAddActionPoint> = ({ id }) => {
+const FormAddActionPoint: React.FC<FormAddActionPointType> = ({ id }) => {
   const [actionPoint, setActionPoint] = useState("");
   const handleChangeActionPoint = (
     e: React.ChangeEvent<HTMLInputElement>
