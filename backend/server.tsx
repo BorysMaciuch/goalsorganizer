@@ -19,7 +19,7 @@ connection.once('open', () => {
     console.log('mongoDB database connection established successfully')
 })
 
-const goalsRouter = require('./routes/goals')
+const goalsRouter = require('./routes/goals.tsx')
 app.use('/goals', goalsRouter)
 
 app.listen(port, () => {

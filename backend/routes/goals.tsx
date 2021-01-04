@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let Goal = require("../models/goals.model");
+let Goal = require("../models/goals.model.tsx");
 
 
 router.route("/").get(async (req, res) => {
