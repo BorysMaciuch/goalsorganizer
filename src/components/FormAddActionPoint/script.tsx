@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Button } from '../Button/script'
+import { v4 as uuidv4 } from 'uuid'
 
 export interface FormAddActionPointType {
   id: string;
@@ -17,6 +19,7 @@ const FormAddActionPoint: React.FC<FormAddActionPointType> = ({ id }) => {
     axios
       .patch(`http://localhost:5000/goals/add-goal/${id}`, {
         actionPoints: actionPoint,
+        _id: uuidv4()
       })
       .catch((err) => console.log(err));
   };
@@ -28,7 +31,7 @@ const FormAddActionPoint: React.FC<FormAddActionPointType> = ({ id }) => {
         onChange={handleChangeActionPoint}
         placeholder="Action point description..."
       />
-      <button onClick={handleSubmitActionPoint}>Submit</button>
+      <Button variant='submit' onClick={handleSubmitActionPoint}>Submit</Button>
     </form>
   );
 };

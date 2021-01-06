@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
+import { Button } from '../Button/script'
 
 const FormAddGoal: React.FC = () => {
 
@@ -27,7 +28,7 @@ const FormAddGoal: React.FC = () => {
     <form>
       <label>Goal title</label>
       <input value={goalTitle} onChange={handleChangeGoalTitle} placeholder="Goal title..." />
-      <button onClick={handleSubmitGoal}>Submit</button>
+      <Button variant='submit' onClick={handleSubmitGoal}>Submit</Button>
     </form>
   );
 };
