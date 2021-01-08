@@ -10,4 +10,4 @@
 - add homepage
 - add 404 page
 - add security layer on requests
-- 
+- deploy 
