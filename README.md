@@ -1,6 +1,6 @@
 # Goals organizer 
 
-#TODO
+## TODO
 - styling of every component
 - adding fonts
 - fix editing action point event/route
