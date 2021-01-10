@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Home from "./pages/Home/script";
-import ErrorPage from './pages/ErrorPage/script'
-import GoalsDashboard from './pages/GoalsDashboard/script'
-import NavBar from './components/NavBar/script'
+import Home from "./pages/Home";
+import ErrorPage from './pages/ErrorPage'
+import GoalsDashboard from './pages/GoalsDashboard'
+import NavBar from './components/NavBar'
 import { GlobalStyles } from "./styles/index";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/index";

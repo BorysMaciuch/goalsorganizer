@@ -1,8 +1,8 @@
 import React from "react";
-import FormAddGoal from "../../components/FormAddGoal/script";
+import FormAddGoal from "../../components/Form/FormAddGoal";
 import { Container } from "../../components/Container/styled";
-import GoalsList from "../../components/GoalsList/script";
-
+import GoalsList from "../../components/GoalsList";
+import { theme } from '../../styles/index'
 export interface Goal {
   id: string;
   title: string;
@@ -17,8 +17,8 @@ export interface ActionPointDescription {
 
 const GoalsDashboard: React.FC = () => {
   return (
-    <Container>
-      <div>Goals List</div>
+    <Container bgColor={theme.colors.lightBlue}>
+      <h1>Goals List</h1>
       <FormAddGoal />
       <GoalsList />
     </Container>
