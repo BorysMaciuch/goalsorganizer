@@ -6,7 +6,8 @@ export const theme = {
     lightBlue: "#f1faee",
     delete: '#e63946',
     edit: '#e9c46a',
-    white: '#ffffff'
+    white: '#ffffff',
+    glass: 'rgba(255, 255, 255, .15)'
   },
 
   radius: {

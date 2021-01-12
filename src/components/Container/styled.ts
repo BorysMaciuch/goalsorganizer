@@ -3,6 +3,7 @@ interface ContainerProps {
     row?: boolean;
     shadow?: string;
     bgColor?: string;
+    glass?: boolean;
 }
 export const Container = styled.div<ContainerProps>`
     display: flex;
