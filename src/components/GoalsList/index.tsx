@@ -21,18 +21,25 @@ interface GoalsListType {
     goalId: string
   ) => Promise<void>;
   handleGetGoals: () => void;
+  handleEditActionPoint: (
+    e: React.FormEvent<HTMLButtonElement>,
+    goalId: string,
+    id: string,
+    description: string
+  ) => void;
 }
 const GoalsList: React.FC<GoalsListType> = ({
   goals,
   handleDeleteGoal,
   handleGetGoals,
+  handleEditActionPoint
 }) => {
   useEffect(() => {
     handleGetGoals();
   }, []);
 
   return (
-    <Container>
+    <>
       {goals.map((goal: GoalType) => (
         <Goal
           key={uuidv4()}
@@ -40,9 +47,10 @@ const GoalsList: React.FC<GoalsListType> = ({
           goalId={goal._id}
           actionPoints={goal.actionPoints}
           handleDeleteGoal={handleDeleteGoal}
+          handleEditActionPoint={handleEditActionPoint}
         />
       ))}
-    </Container>
+    </>
   );
 };
 
