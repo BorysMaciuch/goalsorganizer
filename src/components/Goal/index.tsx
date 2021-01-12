@@ -4,44 +4,32 @@ import { EditButton, DeleteButton } from "../Button/styled";
 import { ActionPointsList } from "../ActionPointsList";
 import { Container } from "../Container/styled";
 import { theme } from "../../styles";
+import { deleteGoal } from "../../services/api";
 
 export interface GoalType {
   title: string;
   actionPoints: Array<ActionPointDescription>;
   goalId: string;
-  handleDeleteActionPoint: any;
-  handleEditActionPoint: any;
-  handleDeleteGoal: any;
+  handleDeleteGoal: (e: React.FormEvent<HTMLButtonElement>, goalId: string) => Promise<void>;
 }
 export interface ActionPointDescription {
   description: string;
   _id: string;
 }
-export const Goal: React.FC<GoalType> = ({
-  title,
-  goalId,
-  actionPoints,
-  handleDeleteActionPoint,
-  handleEditActionPoint,
-  handleDeleteGoal,
-}) => {
+
+export const Goal: React.FC<GoalType> = ({ title, goalId, actionPoints, handleDeleteGoal }) => {
   return (
     <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
       <h3>{title}</h3>
       <FormAddActionPoint id={goalId} />
 
-      <ActionPointsList
-        actionPoints={actionPoints}
-        goalId={goalId}
-        handleDeleteActionPoint={handleDeleteActionPoint}
-        handleEditActionPoint={handleEditActionPoint}
-      />
+      <ActionPointsList actionPoints={actionPoints} goalId={goalId} />
       <Container row>
         <EditButton>Edit</EditButton>
         <DeleteButton onClick={(e) => handleDeleteGoal(e, goalId)}>
           Delete
         </DeleteButton>
       </Container>
-      </Container>
+    </Container>
   );
 };
