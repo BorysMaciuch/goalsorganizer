@@ -6,8 +6,6 @@ import { Container } from "../Container/styled";
 export interface ActionPointsListType {
   actionPoints: Array<ActionPointDescription>;
   goalId: string;
-  handleDeleteActionPoint: any;
-  handleEditActionPoint: any;
 }
 export interface ActionPointDescription {
   description: string;
@@ -16,8 +14,6 @@ export interface ActionPointDescription {
 export const ActionPointsList: React.FC<ActionPointsListType> = ({
   actionPoints,
   goalId,
-  handleDeleteActionPoint,
-  handleEditActionPoint,
 }) => {
   return (
     <Container bgColor={theme.colors.white}>
@@ -26,8 +22,6 @@ export const ActionPointsList: React.FC<ActionPointsListType> = ({
           <ActionPoint
             description={actionPoint.description}
             id={actionPoint._id}
-            handleDeleteActionPoint={handleDeleteActionPoint}
-            handleEditActionPoint={handleEditActionPoint}
             goalId={goalId}
           />
         </Container>

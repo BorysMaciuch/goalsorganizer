@@ -6,6 +6,7 @@ import { FormStyled } from "../styled";
 import { InputStyled } from "../Input/styled";
 import { LabelStyled } from "../Label/styled";
 import { RelativeContainer } from "../../Container/styled";
+import { addGoal } from '../../../services/api'
 
 const FormAddGoal: React.FC = () => {
   const [goalTitle, setGoalTitle] = useState("");
@@ -15,20 +16,11 @@ const FormAddGoal: React.FC = () => {
     setGoalTitle(e.target.value);
   };
 
-  const addGoalHandler = (e: any) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:5000/goals/add-goal", {
-        id: uuidv4(),
-        title: goalTitle,
-        actionPoints: [],
-      })
-      .catch((err) => console.log(err));
-  };
+  
   const handleSubmitGoal = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setGoalTitle("");
-    addGoalHandler(e);
+    addGoal(e, goalTitle, uuidv4());
   };
   return (
     <FormStyled>
