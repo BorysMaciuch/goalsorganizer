@@ -10,26 +10,35 @@ export interface GoalType {
   title: string;
   actionPoints: Array<ActionPointDescription>;
   goalId: string;
-  handleDeleteGoal: (e: React.FormEvent<HTMLButtonElement>, goalId: string) => Promise<void>;
-  handleEditActionPoint: (
+  handleDeleteGoal: (
     e: React.FormEvent<HTMLButtonElement>,
-    goalId: string,
-    id: string,
-    description: string
-  ) => void;
+    goalId: string
+  ) => Promise<void>;
+
+  handleSetActiveActionPoint: (goalId: string, id: string) => void;
 }
 export interface ActionPointDescription {
   description: string;
   _id: string;
 }
 
-export const Goal: React.FC<GoalType> = ({ title, goalId, actionPoints, handleDeleteGoal, handleEditActionPoint }) => {
+export const Goal: React.FC<GoalType> = ({
+  title,
+  goalId,
+  actionPoints,
+  handleDeleteGoal,
+  handleSetActiveActionPoint,
+}) => {
   return (
     <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
       <h3>{title}</h3>
       <FormAddActionPoint id={goalId} />
 
-      <ActionPointsList actionPoints={actionPoints} goalId={goalId} handleEditActionPoint={handleEditActionPoint}  />
+      <ActionPointsList
+        actionPoints={actionPoints}
+        goalId={goalId}
+        handleSetActiveActionPoint={handleSetActiveActionPoint}
+      />
       <Container row>
         <EditButton>Edit</EditButton>
         <DeleteButton onClick={(e) => handleDeleteGoal(e, goalId)}>
