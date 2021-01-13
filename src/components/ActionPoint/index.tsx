@@ -8,25 +8,19 @@ export interface ActionPointType {
   description: string;
   id: string;
   goalId: string;
-  handleEditActionPoint: (
-    e: React.FormEvent<HTMLButtonElement>,
-    goalId: string,
-    id: string,
-    description: string
-  ) => void;
+  handleSetActiveActionPoint: (goalId: string, id: string) => void;
 }
 export const ActionPoint: React.FC<ActionPointType> = ({
   description,
   id,
   goalId,
-  handleEditActionPoint
-  
+  handleSetActiveActionPoint,
 }) => {
   return (
     <Container row key={uuidv4()}>
       {description}
       {id}
-      <EditButton onClick={(e) => handleEditActionPoint(e, goalId, id, "bb")}>
+      <EditButton onClick={(e) => handleSetActiveActionPoint(goalId, id)}>
         Edit action point
       </EditButton>
       <DeleteButton onClick={(e) => deleteActionPoint(e, goalId, id)}>
