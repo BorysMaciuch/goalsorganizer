@@ -2,6 +2,7 @@ import React from "react";
 import { theme } from "../../styles";
 import { ActionPoint } from "../ActionPoint";
 import { Container } from "../Container/styled";
+import { v4 as uuidv4 } from "uuid";
 
 export interface ActionPointsListType {
   actionPoints: Array<ActionPointDescription>;
@@ -22,6 +23,7 @@ export const ActionPointsList: React.FC<ActionPointsListType> = ({
       {actionPoints.map((actionPoint) => (
         <Container>
           <ActionPoint
+            key={uuidv4()}
             description={actionPoint.description}
             id={actionPoint._id}
             goalId={goalId}
