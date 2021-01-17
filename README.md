@@ -11,6 +11,7 @@ App is built with MERN stack, TypeScript and styled-components.
 - add editing goal name route
 - add Dashboard, DailyGoals, 404 pages
 - add authorization
+- add error handling
 - add types to backend
 - add Context API / Redux
 - add Typography compontent for styling text
