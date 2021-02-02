@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Goal } from "../Goal";
 import { Container } from "../Container/styled";
 import { theme } from "../../styles";
+import { useAuth0 } from '@auth0/auth0-react';
 
 interface GoalType {
   title: string;
@@ -32,9 +33,12 @@ const GoalsList: React.FC<GoalsListType> = ({
   useEffect(() => {
     handleGetGoals();
   }, []);
+  const { user } = useAuth0();
 
   return (
     <>
+    
+    {user && user.sub}
       {goals.map((goal: GoalType) => (
         <Goal
           key={uuidv4()}
