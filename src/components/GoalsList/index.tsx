@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import { Goal } from "../Goal";
 import { Container } from "../Container/styled";
 import { theme } from "../../styles";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
+import UserContext from "../../services/context/UserContext";
 
 interface GoalType {
   title: string;
@@ -37,18 +38,27 @@ const GoalsList: React.FC<GoalsListType> = ({
 
   return (
     <>
-    
-    {user && user.sub}
-      {goals.map((goal: GoalType) => (
-        <Goal
-          key={uuidv4()}
-          title={goal.title}
-          goalId={goal._id}
-          actionPoints={goal.actionPoints}
-          handleDeleteGoal={handleDeleteGoal}
-          handleSetActiveActionPoint={handleSetActiveActionPoint}
-        />
-      ))}
+      <UserContext.Consumer>
+        {(context) =>
+          context && (
+            <>
+              {goals.map((goal: GoalType) => (
+                <>
+                  <div>{context.username}</div>
+                  <Goal
+                    key={uuidv4()}
+                    title={goal.title}
+                    goalId={goal._id}
+                    actionPoints={goal.actionPoints}
+                    handleDeleteGoal={handleDeleteGoal}
+                    handleSetActiveActionPoint={handleSetActiveActionPoint}
+                  />
+                </>
+              ))}
+            </>
+          )
+        }
+      </UserContext.Consumer>
     </>
   );
 };
