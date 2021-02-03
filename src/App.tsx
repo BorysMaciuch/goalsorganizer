@@ -19,9 +19,9 @@ const App = () => {
       if (user) {
         setUserId({ userId: user.sub });
       }
+
     })();
-    console.log(userId)
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated]);
   return (
     <ThemeProvider theme={theme}>
       <>

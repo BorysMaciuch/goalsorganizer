@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormAddGoal from "../../components/Form/FormAddGoal";
 import { Container } from "../../components/Container/styled";
 import GoalsList from "../../components/GoalsList";
@@ -11,6 +11,7 @@ import {
 } from "../../services/api";
 import { Modal } from "../../components/Modal";
 import { GrayBg } from "../../components/Modal/styled";
+import GoalsContext from "../../services/context/GoalsContext";
 
 export interface Goal {
   id: string;
@@ -38,6 +39,7 @@ export interface ActiveActionPointType {
 const GoalsDashboard: React.FC = () => {
   const [goals, setGoals] = useState<Array<GoalType>>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const [activeActionPoint, setActiveActionPoint] = useState({
     goalId: "",
     id: "",
@@ -53,8 +55,7 @@ const GoalsDashboard: React.FC = () => {
     goalId: string
   ) => {
     await deleteGoal(e, goalId);
-    const goals = await getGoals();
-    setGoals(goals);
+    await handleGetGoals();
   };
 
   const handleAddGoal = async (
@@ -62,9 +63,9 @@ const GoalsDashboard: React.FC = () => {
     goalTitle: string,
     id: string
   ) => {
+    await setIsLoading(true)
     await addGoal(e, goalTitle, id);
-    const goals = await getGoals();
-    setGoals(goals);
+    await setIsLoading(false)
   };
   const handleEditActionPoint = async (
     e: React.FormEvent<HTMLButtonElement>,
@@ -93,31 +94,40 @@ const GoalsDashboard: React.FC = () => {
 
     handleEditActionPoint(e, goalId, id, description);
   };
-
+  useEffect(() => {
+    handleGetGoals();
+  }, [isLoading]);
+  
+  console.log("rerender");
+  console.log(goals)
   return (
-    <Container bgColor={theme.colors.lightBlue}>
-      {isModalVisible ? (
-        <>
-          <Modal
-            title="Edit action point"
-            handleCloseModal={handleCloseModal}
-            activeActionPoint={activeActionPoint}
-            handleSubmitEditActionPoint={handleSubmitEditActionPoint}
-          />
-          <GrayBg />
-        </>
-      ) : null}
-      <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
-        <h1>Goals List</h1>
-        <FormAddGoal handleAddGoal={handleAddGoal} />
+    <GoalsContext.Provider
+      value={{
+        goals,
+        handleGetGoals,
+        handleDeleteGoal,
+        handleSetActiveActionPoint,
+      }}
+    >
+      <Container bgColor={theme.colors.lightBlue}>
+        {isModalVisible ? (
+          <>
+            <Modal
+              title="Edit action point"
+              handleCloseModal={handleCloseModal}
+              activeActionPoint={activeActionPoint}
+              handleSubmitEditActionPoint={handleSubmitEditActionPoint}
+            />
+            <GrayBg />
+          </>
+        ) : null}
+        <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
+          <h1>Goals List</h1>
+          <FormAddGoal handleAddGoal={handleAddGoal} />
+        </Container>
+        <GoalsList />
       </Container>
-      <GoalsList
-        goals={goals}
-        handleDeleteGoal={handleDeleteGoal}
-        handleGetGoals={handleGetGoals}
-        handleSetActiveActionPoint={handleSetActiveActionPoint}
-      />
-    </Container>
+    </GoalsContext.Provider>
   );
 };
 
