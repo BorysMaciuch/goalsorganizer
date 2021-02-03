@@ -94,7 +94,6 @@ const GoalsDashboard: React.FC = () => {
     handleEditActionPoint(e, goalId, id, description);
   };
 
-  console.log(activeActionPoint);
   return (
     <Container bgColor={theme.colors.lightBlue}>
       {isModalVisible ? (

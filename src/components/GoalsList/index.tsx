@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Goal } from "../Goal";
-import { Container } from "../Container/styled";
-import { theme } from "../../styles";
-import { useAuth0 } from "@auth0/auth0-react";
 import UserContext from "../../services/context/UserContext";
 
 interface GoalType {
@@ -33,8 +29,7 @@ const GoalsList: React.FC<GoalsListType> = ({
 }) => {
   useEffect(() => {
     handleGetGoals();
-  }, []);
-  const { user } = useAuth0();
+  }, [handleGetGoals]);
 
   return (
     <>
@@ -43,8 +38,7 @@ const GoalsList: React.FC<GoalsListType> = ({
           context && (
             <>
               {goals.map((goal: GoalType) => (
-                <>
-                  <div>{context.username}</div>
+                
                   <Goal
                     key={uuidv4()}
                     title={goal.title}
@@ -53,7 +47,7 @@ const GoalsList: React.FC<GoalsListType> = ({
                     handleDeleteGoal={handleDeleteGoal}
                     handleSetActiveActionPoint={handleSetActiveActionPoint}
                   />
-                </>
+               
               ))}
             </>
           )
