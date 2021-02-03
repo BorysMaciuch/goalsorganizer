@@ -1,46 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import FormAddActionPoint from "../Form/FormAddActionPoint";
 import { EditButton, DeleteButton } from "../Button/styled";
 import { ActionPointsList } from "../ActionPointsList";
 import { Container } from "../Container/styled";
 import { theme } from "../../styles";
+import GoalsContext from "../../services/context/GoalsContext";
 
 export interface GoalType {
   title: string;
   actionPoints: Array<ActionPointDescription>;
   goalId: string;
-  handleDeleteGoal: (
-    e: React.FormEvent<HTMLButtonElement>,
-    goalId: string
-  ) => Promise<void>;
 
-  handleSetActiveActionPoint: (goalId: string, id: string) => void;
 }
 export interface ActionPointDescription {
   description: string;
   _id: string;
 }
 
-export const Goal: React.FC<GoalType> = ({
-  title,
-  goalId,
-  actionPoints,
-  handleDeleteGoal,
-  handleSetActiveActionPoint,
-}) => {
+export const Goal: React.FC<GoalType> = ({ title, goalId, actionPoints }) => {
+  const { handleDeleteGoal } = useContext(GoalsContext);
   return (
     <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
       <h3>{title}</h3>
       <FormAddActionPoint id={goalId} />
 
-      <ActionPointsList
-        actionPoints={actionPoints}
-        goalId={goalId}
-        handleSetActiveActionPoint={handleSetActiveActionPoint}
-      />
+      <ActionPointsList actionPoints={actionPoints} goalId={goalId} />
       <Container row>
         <EditButton>Edit</EditButton>
-        <DeleteButton onClick={(e) => handleDeleteGoal(e, goalId)}>
+        <DeleteButton onClick={async (e) => await handleDeleteGoal(e, goalId)}>
           Delete
         </DeleteButton>
       </Container>
