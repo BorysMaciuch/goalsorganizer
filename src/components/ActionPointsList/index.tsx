@@ -21,9 +21,8 @@ export const ActionPointsList: React.FC<ActionPointsListType> = ({
   return (
     <Container bgColor={theme.colors.white}>
       {actionPoints.map((actionPoint) => (
-        <Container>
+        <Container key={uuidv4()}>
           <ActionPoint
-            key={uuidv4()}
             description={actionPoint.description}
             id={actionPoint._id}
             goalId={goalId}

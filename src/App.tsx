@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -12,11 +12,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 import UserContext from "./services/context/UserContext";
 
 const App = () => {
-  const user = { username: "dummyuser" };
+  const { user, isAuthenticated } = useAuth0();
+  const [userId, setUserId] = useState({ userId: "" });
+  useEffect(() => {
+    (async () => {
+      if (user) {
+        setUserId({ userId: user.sub });
+      }
+    })();
+    console.log(userId)
+  }, [isAuthenticated, user]);
   return (
     <ThemeProvider theme={theme}>
       <>
-        <UserContext.Provider value={user}>
+        <UserContext.Provider value={userId}>
           <GlobalStyles />
           <NavBar />
           <Switch>

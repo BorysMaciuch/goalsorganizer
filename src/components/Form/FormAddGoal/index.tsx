@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { SubmitButton } from "../../Button/styled";
 import { FormStyled } from "../styled";
 import { InputStyled } from "../Input/styled";
 import { LabelStyled } from "../Label/styled";
 import { RelativeContainer } from "../../Container/styled";
-import { addGoal } from '../../../services/api'
 
 interface FormAddGoalType {
   handleAddGoal: (e:React.FormEvent<HTMLButtonElement>, goalTitle: string, id: string) => void;

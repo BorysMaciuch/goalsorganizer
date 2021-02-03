@@ -4,7 +4,6 @@ import { EditButton, DeleteButton } from "../Button/styled";
 import { ActionPointsList } from "../ActionPointsList";
 import { Container } from "../Container/styled";
 import { theme } from "../../styles";
-import { deleteGoal } from "../../services/api";
 
 export interface GoalType {
   title: string;

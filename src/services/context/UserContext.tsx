@@ -1,9 +1,9 @@
 import React from "react";
 
-const UserContext = React.createContext<AppContextInterface>({ username: "" });
+const UserContext = React.createContext<AppContextInterface>({ userId: "b" });
 
 interface AppContextInterface {
-  username: string;
+  userId: string;
 }
 
 export default UserContext;

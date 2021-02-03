@@ -2,7 +2,7 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { DeleteButton, EditButton } from "../Button/styled";
 import { Container } from "../Container/styled";
-import { editActionPoint, deleteActionPoint } from "../../services/api/index";
+import { deleteActionPoint } from "../../services/api/index";
 
 export interface ActionPointType {
   description: string;
