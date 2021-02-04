@@ -11,7 +11,9 @@ export interface ActionPointType {
   id: string;
 }
 export const ActionPoint: React.FC<ActionPointType> = ({ description, id }) => {
-  const { handleSetActiveActionPoint } = useContext(GoalsContext);
+  const { handleSetActiveActionPoint, handleDeleteActionPoint } = useContext(
+    GoalsContext
+  );
   const { goalId } = useContext(GoalContext);
   return (
     <Container row key={uuidv4()}>
@@ -19,7 +21,7 @@ export const ActionPoint: React.FC<ActionPointType> = ({ description, id }) => {
       <EditButton onClick={() => handleSetActiveActionPoint(goalId, id)}>
         Edit action point
       </EditButton>
-      <DeleteButton onClick={(e) => deleteActionPoint(e, goalId, id)}>
+      <DeleteButton onClick={(e) => handleDeleteActionPoint(e, goalId, id)}>
         Delete action point
       </DeleteButton>
     </Container>
