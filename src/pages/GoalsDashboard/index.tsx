@@ -9,6 +9,7 @@ import {
   deleteGoal,
   addActionPoint,
   editActionPoint,
+  deleteActionPoint
 } from "../../services/api";
 import { Modal } from "../../components/Modal";
 import { GrayBg } from "../../components/Modal/styled";
@@ -69,13 +70,18 @@ const GoalsDashboard: React.FC = () => {
     await deleteGoal(e, goalId);
     setIsLoading(false)
   };
-  
+
   const handleAddActionPoint = async (e: React.FormEvent<HTMLButtonElement>, actionPointTitle: string, id: string ) => {
    setIsLoading(true)
    await addActionPoint(e, actionPointTitle, id)
    setIsLoading(false)
   };
-
+  
+  const handleDeleteActionPoint = async(e: React.FormEvent<HTMLButtonElement>, goalId: string, id: string) => {
+    setIsLoading(true)
+    await deleteActionPoint(e, goalId, id)
+    setIsLoading(false)
+  }
   const handleEditActionPoint = async (
     e: React.FormEvent<HTMLButtonElement>,
     goalId: string,
@@ -118,7 +124,8 @@ const GoalsDashboard: React.FC = () => {
         handleGetGoals,
         handleDeleteGoal,
         handleSetActiveActionPoint,
-        handleAddActionPoint
+        handleAddActionPoint,
+         handleDeleteActionPoint
       }}
     >
       <Container bgColor={theme.colors.lightBlue}>

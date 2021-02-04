@@ -1,9 +1,7 @@
 import axios from "axios";
 
 export const getGoals = () => {
-  return axios
-    .get("http://localhost:5000/goals")
-    .then((res) => res.data);
+  return axios.get("http://localhost:5000/goals").then((res) => res.data);
 };
 
 export const addGoal = (
@@ -40,7 +38,7 @@ export const addActionPoint = (
       _id: id,
     })
     .catch((err) => console.log(err));
-}
+};
 export const deleteActionPoint = (
   e: React.FormEvent<HTMLButtonElement>,
   goalId: string,
