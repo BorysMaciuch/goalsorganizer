@@ -2,16 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LoginButton from "../LoginButton/index";
 import LogoutButton from "../LogoutButton/index";
-import { NavBarStyled } from "./styled";
+import { NavBarStyled, StyledLink, NavBarItemContainer } from "./styled";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar: React.FC = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   return (
     <NavBarStyled>
-      <Link to="/">Home</Link>
-      <Link to="/goalslist">Goals List</Link>
-      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+      <NavBarItemContainer>
+        <StyledLink to="/">Home</StyledLink>
+        <StyledLink to="/goalslist">Goals List</StyledLink>
+      </NavBarItemContainer>
+      <NavBarItemContainer>
+        {isAuthenticated ? <NavBarItemContainer><div>{user.email}</div><LogoutButton /> </NavBarItemContainer>: <LoginButton />}
+      </NavBarItemContainer>
     </NavBarStyled>
   );
 };
