@@ -7,7 +7,11 @@ import { LabelStyled } from "../Label/styled";
 import { RelativeContainer } from "../../Container/styled";
 
 interface FormAddGoalType {
-  handleAddGoal: (e:React.FormEvent<HTMLButtonElement>, goalTitle: string, id: string) => void;
+  handleAddGoal: (
+    e: React.FormEvent<HTMLButtonElement>,
+    goalTitle: string,
+    id: string
+  ) => void;
 }
 
 const FormAddGoal: React.FC<FormAddGoalType> = ({ handleAddGoal }) => {
@@ -18,7 +22,6 @@ const FormAddGoal: React.FC<FormAddGoalType> = ({ handleAddGoal }) => {
     setGoalTitle(e.target.value);
   };
 
-  
   const handleSubmitGoal = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setGoalTitle("");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { SubmitButton } from "../../Button/styled";
 import { v4 as uuidv4 } from "uuid";
@@ -6,6 +6,7 @@ import { FormStyled } from "../styled";
 import { InputStyled } from "../Input/styled";
 import { LabelStyled } from "../Label/styled";
 import { RelativeContainer } from "../../Container/styled";
+import GoalsContext from "../../../services/context/GoalsContext";
 
 export interface FormAddActionPointType {
   id: string;
@@ -13,20 +14,20 @@ export interface FormAddActionPointType {
 
 const FormAddActionPoint: React.FC<FormAddActionPointType> = ({ id }) => {
   const [actionPoint, setActionPoint] = useState("");
+  const { handleAddActionPoint } = useContext(GoalsContext);
+
   const handleChangeActionPoint = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
     setActionPoint(e.target.value);
   };
+
   const handleSubmitActionPoint = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    axios
-      .patch(`http://localhost:5000/goals/add-goal/${id}`, {
-        actionPoints: actionPoint,
-        _id: uuidv4(),
-      })
-      .catch((err) => console.log(err));
+    setActionPoint("");
+    handleAddActionPoint(e, actionPoint, id);
   };
+  
   return (
     <FormStyled>
       <RelativeContainer>

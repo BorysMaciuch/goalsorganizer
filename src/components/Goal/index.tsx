@@ -10,7 +10,6 @@ export interface GoalType {
   title: string;
   actionPoints: Array<ActionPointDescription>;
   goalId: string;
-
 }
 export interface ActionPointDescription {
   description: string;
@@ -23,8 +22,7 @@ export const Goal: React.FC<GoalType> = ({ title, goalId, actionPoints }) => {
     <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
       <h3>{title}</h3>
       <FormAddActionPoint id={goalId} />
-
-      <ActionPointsList actionPoints={actionPoints} goalId={goalId} />
+      <ActionPointsList />
       <Container row>
         <EditButton>Edit</EditButton>
         <DeleteButton onClick={async (e) => await handleDeleteGoal(e, goalId)}>

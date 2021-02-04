@@ -5,6 +5,7 @@ const GoalsContext = React.createContext<GoalsContextInterface>({
   handleGetGoals: () => null,
   handleDeleteGoal: async () => {},
   handleSetActiveActionPoint: () => null,
+  handleAddActionPoint: () => null,
 });
 
 interface GoalsContextInterface {
@@ -15,6 +16,7 @@ interface GoalsContextInterface {
     goalId: string
   ) => Promise<void>;
   handleSetActiveActionPoint: (goalId: string, id: string) => void;
+  handleAddActionPoint: (e: React.FormEvent<HTMLButtonElement>, actionPointTitle: string, id: string) => void
 }
 export interface GoalType {
   title: string;
