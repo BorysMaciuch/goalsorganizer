@@ -4,7 +4,7 @@ import { ModalStyled } from "./styled";
 import { RelativeContainer } from "../Container/styled";
 import { DeleteButton, SubmitButton } from "../../components/Button/styled";
 import {ActiveActionPointType} from '../../pages/GoalsDashboard/index'
-
+import { SubHeading } from '../Typography/styled'
 
 interface ModalType {
   title: string;
@@ -20,13 +20,11 @@ export const Modal: React.FC<ModalType> = ({ title, handleCloseModal, handleSubm
     setActionPointDescription(e.target.value);
   };
   return (
-    <RelativeContainer>
       <ModalStyled>
-        <h4>{title}</h4>
+        <SubHeading>{title}</SubHeading>
         <InputStyled onChange={handleActionPointDescription} placeholder="New description..." />
         <SubmitButton onClick={(e) => handleSubmitEditActionPoint(e, activeActionPoint.goalId, activeActionPoint.id, actionPointDescription)}>Submit</SubmitButton>
         <DeleteButton onClick={(e) => handleCloseModal(e)}>Close</DeleteButton>
       </ModalStyled>
-    </RelativeContainer>
   );
 };

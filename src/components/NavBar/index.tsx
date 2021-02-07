@@ -10,12 +10,25 @@ const NavBar: React.FC = () => {
   return (
     <NavBarStyled>
       <NavBarItemContainer>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/goalslist">Goals List</StyledLink>
-        <StyledLink to="/about">About</StyledLink>
+        <NavBarItemContainer>
+          <StyledLink to="/">Home</StyledLink>
+        </NavBarItemContainer>
+        <NavBarItemContainer>
+          <StyledLink to="/goalslist">Goals List</StyledLink>
+        </NavBarItemContainer>
+        <NavBarItemContainer>
+          <StyledLink to="/about">About</StyledLink>
+        </NavBarItemContainer>
       </NavBarItemContainer>
       <NavBarItemContainer>
-        {isAuthenticated ? <NavBarItemContainer><div>{user.email}</div><LogoutButton /> </NavBarItemContainer>: <LoginButton />}
+        {isAuthenticated ? (
+          <NavBarItemContainer>
+            <div>{user.email}</div>
+            <LogoutButton />{" "}
+          </NavBarItemContainer>
+        ) : (
+          <LoginButton />
+        )}
       </NavBarItemContainer>
     </NavBarStyled>
   );

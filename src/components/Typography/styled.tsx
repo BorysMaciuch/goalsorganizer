@@ -9,6 +9,10 @@ export const MainHeading = styled.h1<TypographyProps>`
 
 `
 
+export const SubHeading = styled.h3<TypographyProps>`
+    padding: 10px;
+`
+
 export const Paragraph = styled.p<TypographyProps>`
     color: ${({ color, theme }) => color ? color : theme.colors.main};
     
