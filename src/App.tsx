@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import About from "./pages/About";
 import ErrorPage from "./pages/ErrorPage";
 import GoalsDashboard from "./pages/GoalsDashboard";
 import NavBar from "./components/NavBar";
@@ -31,6 +32,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/goalslist" component={GoalsDashboard} />
+            <Route path="/about" component={About} />
             <Route component={ErrorPage} />
           </Switch>
         </UserContext.Provider>

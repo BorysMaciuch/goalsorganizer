@@ -12,6 +12,7 @@ const NavBar: React.FC = () => {
       <NavBarItemContainer>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/goalslist">Goals List</StyledLink>
+        <StyledLink to="/about">About</StyledLink>
       </NavBarItemContainer>
       <NavBarItemContainer>
         {isAuthenticated ? <NavBarItemContainer><div>{user.email}</div><LogoutButton /> </NavBarItemContainer>: <LoginButton />}
