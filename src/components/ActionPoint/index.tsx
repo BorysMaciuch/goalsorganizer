@@ -5,6 +5,8 @@ import { Container } from "../Container/styled";
 import { deleteActionPoint } from "../../services/api/index";
 import GoalsContext from "../../services/context/GoalsContext";
 import GoalContext from "../../services/context/GoalContext";
+import EditIcon from '../../assets/edit.svg'
+import DeleteIcon from '../../assets/delete.svg'
 
 export interface ActionPointType {
   description: string;
@@ -19,10 +21,10 @@ export const ActionPoint: React.FC<ActionPointType> = ({ description, id }) => {
     <Container row key={uuidv4()}>
       {description}
       <EditButton onClick={() => handleSetActiveActionPoint(goalId, id)}>
-        Edit action point
+        <img src={EditIcon} width="20px" height="20px" alt="Edit Button" />
       </EditButton>
       <DeleteButton onClick={(e) => handleDeleteActionPoint(e, goalId, id)}>
-        Delete action point
+        <img src={DeleteIcon} width="20px" height="20px" alt="Delete Button" />
       </DeleteButton>
     </Container>
   );
