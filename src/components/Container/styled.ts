@@ -22,5 +22,6 @@ export const Container = styled.div<ContainerProps>`
     
 `
 export const RelativeContainer = styled.div`
+    min-width: 300px;
     position: relative;
 `

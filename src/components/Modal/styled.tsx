@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ModalStyled = styled.div`
     position: absolute;
     width: 500px;
-    height: 200px;
     top: 50%;
     left: 50%;
     display: flex;
@@ -11,9 +10,10 @@ export const ModalStyled = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: ${({ theme }) => theme.radius.normal};
-    background-color: ${({ theme }) => theme.colors.lightBlue};
+    background-color: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadow.normal};
     margin: 200px 0 0 -250px;
+    padding: 30px;
     z-index: 99;
 }
 `;
