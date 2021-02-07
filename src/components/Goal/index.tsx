@@ -5,6 +5,7 @@ import { ActionPointsList } from "../ActionPointsList";
 import { Container } from "../Container/styled";
 import { theme } from "../../styles";
 import GoalsContext from "../../services/context/GoalsContext";
+import EditIcon from '../../assets/edit.svg'
 
 export interface GoalType {
   title: string;
@@ -24,7 +25,7 @@ export const Goal: React.FC<GoalType> = ({ title, goalId, actionPoints }) => {
       <FormAddActionPoint id={goalId} />
       <ActionPointsList />
       <Container row>
-        <EditButton>Edit</EditButton>
+        <EditButton><img src={EditIcon} width='20px' height='20px' alt='Edit Button'/></EditButton>
         <DeleteButton onClick={async (e) => await handleDeleteGoal(e, goalId)}>
           Delete
         </DeleteButton>

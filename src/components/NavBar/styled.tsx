@@ -16,8 +16,12 @@ export const NavBarStyled = styled.div`
 export const StyledLink = styled(Link)`
     padding: 2px 10px;
     text-decoration: none;
-    background 
     color: ${({ theme }) => theme.colors.main};
+    &:hover {
+        font-weight: bold;        
+    }
+
+
 `
 
 export const NavBarItemContainer = styled.div`
