@@ -17,9 +17,17 @@ interface GoalsContextInterface {
     goalId: string
   ) => Promise<void>;
   handleSetActiveActionPoint: (goalId: string, id: string) => void;
-  handleAddActionPoint: (e: React.FormEvent<HTMLButtonElement>, actionPointTitle: string, id: string) => void
-  handleDeleteActionPoint: (e: React.FormEvent<HTMLButtonElement>, goalId: string, id: string) => void
-
+  handleAddActionPoint: (
+    e: React.FormEvent<HTMLButtonElement>,
+    actionPointTitle: string,
+    goalId: string,
+    actionPointId: string
+  ) => void;
+  handleDeleteActionPoint: (
+    e: React.FormEvent<HTMLButtonElement>,
+    goalId: string,
+    id: string
+  ) => void;
 }
 export interface GoalType {
   title: string;
