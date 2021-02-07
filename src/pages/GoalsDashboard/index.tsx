@@ -9,11 +9,12 @@ import {
   deleteGoal,
   addActionPoint,
   editActionPoint,
-  deleteActionPoint
+  deleteActionPoint,
 } from "../../services/api";
 import { Modal } from "../../components/Modal";
 import { GrayBg } from "../../components/Modal/styled";
 import GoalsContext from "../../services/context/GoalsContext";
+import { ActionPoint } from "../../components/ActionPoint";
 
 export interface Goal {
   id: string;
@@ -41,7 +42,7 @@ export interface ActiveActionPointType {
 const GoalsDashboard: React.FC = () => {
   const [goals, setGoals] = useState<Array<GoalType>>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [activeActionPoint, setActiveActionPoint] = useState({
     goalId: "",
     id: "",
@@ -57,44 +58,54 @@ const GoalsDashboard: React.FC = () => {
     goalTitle: string,
     id: string
   ) => {
-    setIsLoading(true)
+    setIsLoading(true);
     await addGoal(e, goalTitle, id);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   const handleDeleteGoal = async (
     e: React.FormEvent<HTMLButtonElement>,
     goalId: string
   ) => {
-    setIsLoading(true)
+    setIsLoading(true);
     await deleteGoal(e, goalId);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
-  const handleAddActionPoint = async (e: React.FormEvent<HTMLButtonElement>, actionPointTitle: string, id: string ) => {
-   setIsLoading(true)
-   await addActionPoint(e, actionPointTitle, id)
-   setIsLoading(false)
+  const handleAddActionPoint = async (
+    e: React.FormEvent<HTMLButtonElement>,
+    actionPointTitle: string,
+    goalId: string,
+    actionPointId: string
+  ) => {
+    setIsLoading(true);
+    await addActionPoint(e, actionPointTitle, goalId, actionPointId);
+    setIsLoading(false);
   };
-  
-  const handleDeleteActionPoint = async(e: React.FormEvent<HTMLButtonElement>, goalId: string, id: string) => {
-    setIsLoading(true)
-    await deleteActionPoint(e, goalId, id)
-    setIsLoading(false)
-  }
+
+  const handleDeleteActionPoint = async (
+    e: React.FormEvent<HTMLButtonElement>,
+    goalId: string,
+    id: string
+  ) => {
+    setIsLoading(true);
+    await deleteActionPoint(e, goalId, id);
+    setIsLoading(false);
+  };
   const handleEditActionPoint = async (
     e: React.FormEvent<HTMLButtonElement>,
     goalId: string,
     id: string,
     description: string
   ) => {
-    setIsLoading(true)
+    setIsLoading(true);
     await editActionPoint(e, goalId, id, description);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   const handleSetActiveActionPoint = (goalId: string, id: string) => {
     setIsModalVisible(true);
+    console.log(id);
     setActiveActionPoint({ goalId, id });
   };
 
@@ -115,8 +126,8 @@ const GoalsDashboard: React.FC = () => {
   useEffect(() => {
     handleGetGoals();
   }, [isLoading]);
-  
-  console.log("rerender");
+
+  console.log("rerender", goals);
   return (
     <GoalsContext.Provider
       value={{
@@ -125,7 +136,7 @@ const GoalsDashboard: React.FC = () => {
         handleDeleteGoal,
         handleSetActiveActionPoint,
         handleAddActionPoint,
-         handleDeleteActionPoint
+        handleDeleteActionPoint,
       }}
     >
       <Container bgColor={theme.colors.lightBlue}>

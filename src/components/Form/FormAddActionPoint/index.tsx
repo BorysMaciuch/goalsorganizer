@@ -25,7 +25,7 @@ const FormAddActionPoint: React.FC<FormAddActionPointType> = ({ id }) => {
   const handleSubmitActionPoint = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setActionPoint("");
-    handleAddActionPoint(e, actionPoint, id);
+    handleAddActionPoint(e, actionPoint, id, uuidv4());
   };
   
   return (

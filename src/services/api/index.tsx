@@ -30,12 +30,13 @@ export const deleteGoal = (
 export const addActionPoint = (
   e: React.FormEvent<HTMLButtonElement>,
   actionPointTitle: string,
-  id: string
+  id: string,
+  actionPointId: string
 ) => {
   axios
     .patch(`http://localhost:5000/goals/add-goal/${id}`, {
       actionPoints: actionPointTitle,
-      _id: id,
+      _id: actionPointId,
     })
     .catch((err) => console.log(err));
 };
