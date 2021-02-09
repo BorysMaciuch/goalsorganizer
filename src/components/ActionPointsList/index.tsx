@@ -5,7 +5,7 @@ import { Container } from "../Container/styled";
 import { v4 as uuidv4 } from "uuid";
 import GoalContext from "../../services/context/GoalContext";
 
-export const ActionPointsList: React.FC = ({}) => {
+export const ActionPointsList: React.FC = () => {
   const { actionPoints } = useContext(GoalContext);
 
   return (
