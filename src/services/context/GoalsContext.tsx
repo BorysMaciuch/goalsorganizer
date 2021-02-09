@@ -11,7 +11,7 @@ const GoalsContext = React.createContext<GoalsContextInterface>({
 
 interface GoalsContextInterface {
   goals: Array<GoalType>;
-  handleGetGoals: () => void;
+  handleGetGoals: (userId: string) => void;
   handleDeleteGoal: (
     e: React.FormEvent<HTMLButtonElement>,
     goalId: string
