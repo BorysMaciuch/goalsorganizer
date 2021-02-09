@@ -1,19 +1,21 @@
 import axios from "axios";
 
-export const getGoals = () => {
-  return axios.get("http://localhost:5000/goals").then((res) => res.data);
+export const getGoals = (userId: string) => {
+  return axios.get(`http://localhost:5000/goals/${userId}`).then((res) => res.data);
 };
 
 export const addGoal = (
   e: React.FormEvent<HTMLButtonElement>,
   goalTitle: string,
-  id: string
+  id: string,
+  userId: string,
 ) => {
   axios
     .post("http://localhost:5000/goals/add-goal", {
-      id: id,
+      id,
       title: goalTitle,
       actionPoints: [],
+      userId,
     })
     .catch((err) => console.log(err));
 };

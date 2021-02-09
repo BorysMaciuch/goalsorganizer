@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import FormAddGoal from "../../components/Form/FormAddGoal";
 import { Container } from "../../components/Container/styled";
 import GoalsList from "../../components/GoalsList";
@@ -14,7 +14,7 @@ import {
 import { Modal } from "../../components/Modal";
 import { GrayBg } from "../../components/Modal/styled";
 import GoalsContext from "../../services/context/GoalsContext";
-import { ActionPoint } from "../../components/ActionPoint";
+import UserContext from '../../services/context/UserContext'
 
 export interface Goal {
   id: string;
@@ -40,6 +40,8 @@ export interface ActiveActionPointType {
 }
 
 const GoalsDashboard: React.FC = () => {
+  const { userId } = useContext(UserContext)
+
   const [goals, setGoals] = useState<Array<GoalType>>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,18 +50,19 @@ const GoalsDashboard: React.FC = () => {
     id: "",
   });
 
-  const handleGetGoals = async () => {
-    const goals = await getGoals();
+  const handleGetGoals = async (userId: string) => {
+    const goals = await getGoals(userId);
     setGoals(goals);
   };
 
   const handleAddGoal = async (
     e: React.FormEvent<HTMLButtonElement>,
     goalTitle: string,
-    id: string
+    id: string,
+    userId: string
   ) => {
     setIsLoading(true);
-    await addGoal(e, goalTitle, id);
+    await addGoal(e, goalTitle, id, userId);
     setIsLoading(false);
   };
 
@@ -105,7 +108,6 @@ const GoalsDashboard: React.FC = () => {
 
   const handleSetActiveActionPoint = (goalId: string, id: string) => {
     setIsModalVisible(true);
-    console.log(id);
     setActiveActionPoint({ goalId, id });
   };
 
@@ -124,10 +126,8 @@ const GoalsDashboard: React.FC = () => {
   };
 
   useEffect(() => {
-    handleGetGoals();
-  }, [isLoading]);
-
-  console.log("rerender", goals);
+    handleGetGoals(userId);
+  }, [isLoading, userId]);
   return (
     <GoalsContext.Provider
       value={{
