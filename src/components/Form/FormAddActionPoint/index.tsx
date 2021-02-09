@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import { SubmitButton } from "../../Button/styled";
 import { v4 as uuidv4 } from "uuid";
 import { FormStyled } from "../styled";

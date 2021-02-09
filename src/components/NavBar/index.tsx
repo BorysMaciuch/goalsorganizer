@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import LoginButton from "../LoginButton/index";
 import LogoutButton from "../LogoutButton/index";
 import { NavBarStyled, StyledLink, NavBarItemContainer } from "./styled";

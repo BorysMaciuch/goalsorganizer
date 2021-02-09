@@ -22,7 +22,7 @@ const App = () => {
       }
 
     })();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, user]);
   return (
     <ThemeProvider theme={theme}>
       <>
