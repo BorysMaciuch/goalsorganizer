@@ -45,6 +45,22 @@ router.route("/delete-goal/:id").delete(async (req, res) => {
     else console.log(res);
   });
 });
+
+router.route("/edit-goal/:id").patch(async (req, res) => {
+  const goalId = req.params.goalId;
+  const description = req.body.description;
+  Goal.findOneAndUpdate(
+    { _id: goalId },
+    { "description.$.description": description },
+
+    { new: true, upsert: true },
+    function (err, action) {
+      if (err) throw err;
+      console.log(action);
+    }
+  );
+});
+
 router.route("/delete-action-point/:id").post(async (req, res) => {
   const goalId = req.body.goalId;
   const actionPointId = req.params.id;

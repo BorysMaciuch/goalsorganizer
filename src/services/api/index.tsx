@@ -29,6 +29,18 @@ export const deleteGoal = (
     .catch((err) => console.log(err));
 };
 
+export const editGoal = (
+  e: React.FormEvent<HTMLButtonElement>,
+  goalId: string,
+  description: string
+) => {
+  axios
+    .patch(`http://localhost:5000/goals/edit-goal/${goalId}`, {
+      description: description,
+    })
+    .catch((err) => console.log(err));
+};
+
 export const addActionPoint = (
   e: React.FormEvent<HTMLButtonElement>,
   actionPointTitle: string,
