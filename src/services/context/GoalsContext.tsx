@@ -1,12 +1,14 @@
 import React from "react";
+import { ParametersType } from '../../pages/GoalsDashboard'
 
 const GoalsContext = React.createContext<GoalsContextInterface>({
   goals: [{ title: "", actionPoints: [], _id: "" }],
   handleGetGoals: () => null,
   handleDeleteGoal: async () => {},
-  handleSetActiveActionPoint: () => null,
   handleAddActionPoint: () => null,
   handleDeleteActionPoint: () => null,
+  handleSubmitEditActionPoint: () => null,
+  handleSubmitEditGoal: () => null
 });
 
 interface GoalsContextInterface {
@@ -16,7 +18,6 @@ interface GoalsContextInterface {
     e: React.FormEvent<HTMLButtonElement>,
     goalId: string
   ) => Promise<void>;
-  handleSetActiveActionPoint: (goalId: string, id: string) => void;
   handleAddActionPoint: (
     e: React.FormEvent<HTMLButtonElement>,
     actionPointTitle: string,
@@ -28,6 +29,19 @@ interface GoalsContextInterface {
     goalId: string,
     id: string
   ) => void;
+  handleSubmitEditActionPoint: (
+    e: React.FormEvent<HTMLButtonElement>,
+    description: string,
+    parameters: ParametersType
+  ) => 
+    void;
+  handleSubmitEditGoal: (
+    e: React.FormEvent<HTMLButtonElement>,
+    description: string,
+    parameters: ParametersType
+  ) => 
+    void;
+  
 }
 export interface GoalType {
   title: string;

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import FormAddActionPoint from "../Form/FormAddActionPoint";
 import { EditButton, DeleteButton } from "../Button/styled";
 import { ActionPointsList } from "../ActionPointsList";
@@ -7,6 +7,8 @@ import { theme } from "../../styles";
 import GoalsContext from "../../services/context/GoalsContext";
 import EditIcon from "../../assets/edit.svg";
 import DeleteIcon from "../../assets/delete.svg";
+import { Modal } from '../../components/Modal'
+import { GrayBg } from '../../components/Modal/styled'
 
 export interface GoalType {
   title: string;
@@ -18,15 +20,37 @@ export interface ActionPointDescription {
   _id: string;
 }
 
-export const Goal: React.FC<GoalType> = ({ title, goalId, actionPoints }) => {
-  const { handleDeleteGoal } = useContext(GoalsContext);
+export const Goal: React.FC<GoalType> = ({ title, goalId }) => {
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const { handleDeleteGoal, handleSubmitEditGoal} = useContext(GoalsContext);
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true)
+  }
+  const handleCloseModal = () => {
+    setIsModalVisible(false)
+  }
   return (
+    <>
+    {isModalVisible ? (
+          <>
+            <Modal
+              parameters={{ goalId }}
+              title="Edit goal"
+              handleSubmitEdit={handleSubmitEditGoal}
+              handleCloseModal={handleCloseModal}
+            />
+            <GrayBg />
+          </>
+        ) : null}
     <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
       <h3>{title}</h3>
       <FormAddActionPoint id={goalId} />
       <ActionPointsList />
       <Container row>
-        <EditButton>
+        <EditButton onClick={handleOpenModal}>
           <img src={EditIcon} width="20px" height="20px" alt="Edit Button" />
         </EditButton>
         <DeleteButton onClick={async (e) => await handleDeleteGoal(e, goalId)}>
@@ -39,5 +63,6 @@ export const Goal: React.FC<GoalType> = ({ title, goalId, actionPoints }) => {
         </DeleteButton>
       </Container>
     </Container>
+    </>
   );
 };

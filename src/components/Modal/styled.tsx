@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const ModalStyled = styled.div`
-    position: absolute;
+    position: fixed;
     width: 500px;
     top: 50%;
     left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,10 +14,8 @@ export const ModalStyled = styled.div`
     border-radius: ${({ theme }) => theme.radius.normal};
     background-color: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadow.normal};
-    margin: 200px 0 0 -250px;
     padding: 30px;
     z-index: 99;
-}
 `;
 
 export const GrayBg = styled.div`
