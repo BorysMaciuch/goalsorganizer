@@ -12,8 +12,6 @@ import {
   editActionPoint,
   deleteActionPoint,
 } from "../../services/api";
-import { Modal } from "../../components/Modal";
-import { GrayBg } from "../../components/Modal/styled";
 import GoalsContext from "../../services/context/GoalsContext";
 import UserContext from '../../services/context/UserContext'
 
@@ -49,12 +47,7 @@ const GoalsDashboard: React.FC = () => {
   const { userId } = useContext(UserContext)
 
   const [goals, setGoals] = useState<Array<GoalType>>([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [activeActionPoint, setActiveActionPoint] = useState({
-    goalId: "",
-    id: "",
-  });
 
   const handleGetGoals = async (userId: string) => {
     const goals = await getGoals(userId);

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { InputStyled } from "../../components/Form/Input/styled";
 import { ModalStyled } from "./styled";
 import { DeleteButton, SubmitButton } from "../../components/Button/styled";
-import {ActiveActionPointType} from '../../pages/GoalsDashboard/index'
 import { SubHeading } from '../Typography/styled'
 import { ParametersType } from '../../pages/GoalsDashboard/index'
 
