@@ -12,9 +12,11 @@ const NavBar: React.FC = () => {
         <NavBarItemContainer>
           <StyledLink to="/">Home</StyledLink>
         </NavBarItemContainer>
+        {isAuthenticated ? (
         <NavBarItemContainer>
           <StyledLink to="/goalslist">Goals List</StyledLink>
         </NavBarItemContainer>
+        ): null}
         <NavBarItemContainer>
           <StyledLink to="/about">About</StyledLink>
         </NavBarItemContainer>
