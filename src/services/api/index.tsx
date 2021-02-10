@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ParametersType } from '../../pages/GoalsDashboard/index'
 
 export const getGoals = (userId: string) => {
   return axios.get(`http://localhost:5000/goals/${userId}`).then((res) => res.data);
@@ -31,9 +32,11 @@ export const deleteGoal = (
 
 export const editGoal = (
   e: React.FormEvent<HTMLButtonElement>,
-  goalId: string,
-  description: string
+  description: string,
+  parameters: ParametersType
 ) => {
+  console.log('edit goal bro', parameters)
+  const { goalId } = parameters 
   axios
     .patch(`http://localhost:5000/goals/edit-goal/${goalId}`, {
       description: description,
@@ -67,10 +70,10 @@ export const deleteActionPoint = (
 };
 export const editActionPoint = (
   e: React.FormEvent<HTMLButtonElement>,
-  goalId: string,
-  id: string,
-  description: string
+  description: string,
+  parameters: ParametersType
 ) => {
+  const { goalId, id } = parameters
   axios
     .patch(`http://localhost:5000/goals/edit-action-point/${id}`, {
       goalId: goalId,

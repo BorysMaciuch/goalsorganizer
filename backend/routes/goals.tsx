@@ -47,11 +47,12 @@ router.route("/delete-goal/:id").delete(async (req, res) => {
 });
 
 router.route("/edit-goal/:id").patch(async (req, res) => {
-  const goalId = req.params.goalId;
+  const goalId = req.params.id;
   const description = req.body.description;
+  console.log('backend', goalId)
   Goal.findOneAndUpdate(
     { _id: goalId },
-    { "description.$.description": description },
+    { "title": description },
 
     { new: true, upsert: true },
     function (err, action) {
@@ -89,4 +90,5 @@ router.route("/edit-action-point/:id").patch(async (req, res) => {
     }
   );
 });
+
 module.exports = router;

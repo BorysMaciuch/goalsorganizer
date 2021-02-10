@@ -7,6 +7,7 @@ import {
   getGoals,
   addGoal,
   deleteGoal,
+  editGoal,
   addActionPoint,
   editActionPoint,
   deleteActionPoint,
@@ -37,6 +38,11 @@ export interface GoalType {
 export interface ActiveActionPointType {
   goalId: string;
   id: string;
+}
+
+export interface ParametersType {
+  goalId: string,
+  id?: string
 }
 
 const GoalsDashboard: React.FC = () => {
@@ -95,35 +101,44 @@ const GoalsDashboard: React.FC = () => {
     await deleteActionPoint(e, goalId, id);
     setIsLoading(false);
   };
-  const handleEditActionPoint = async (
+
+  const handleEditGoal = async (
     e: React.FormEvent<HTMLButtonElement>,
-    goalId: string,
-    id: string,
-    description: string
+    description: string,
+    parameters: ParametersType
   ) => {
     setIsLoading(true);
-    await editActionPoint(e, goalId, id, description);
+    await editGoal(e, description, parameters);
     setIsLoading(false);
   };
 
-  const handleSetActiveActionPoint = (goalId: string, id: string) => {
-    setIsModalVisible(true);
-    setActiveActionPoint({ goalId, id });
+  const handleSubmitEditGoal = (
+    e: React.FormEvent<HTMLButtonElement>,
+    description: string,
+    parameters: ParametersType
+  ) => {
+    handleEditGoal(e, description, parameters);
+  };
+
+  const handleEditActionPoint = async (
+    e: React.FormEvent<HTMLButtonElement>,
+    description: string,
+    parameters: ParametersType
+  ) => {
+    setIsLoading(true);
+    await editActionPoint(e, description, parameters);
+    setIsLoading(false);
   };
 
   const handleSubmitEditActionPoint = (
     e: React.FormEvent<HTMLButtonElement>,
-    goalId: string,
-    id: string,
-    description: string
+    description: string,
+    parameters: ParametersType
   ) => {
-    handleCloseModal(e);
-    handleEditActionPoint(e, goalId, id, description);
+    handleEditActionPoint(e, description, parameters);
   };
 
-  const handleCloseModal = (e: React.FormEvent<HTMLButtonElement>) => {
-    setIsModalVisible(false);
-  };
+  
 
   useEffect(() => {
     handleGetGoals(userId);
@@ -134,23 +149,13 @@ const GoalsDashboard: React.FC = () => {
         goals,
         handleGetGoals,
         handleDeleteGoal,
-        handleSetActiveActionPoint,
         handleAddActionPoint,
         handleDeleteActionPoint,
+        handleSubmitEditActionPoint,
+        handleSubmitEditGoal,
       }}
     >
       <Container bgColor={theme.colors.lightBlue}>
-        {isModalVisible ? (
-          <>
-            <Modal
-              title="Edit action point"
-              handleCloseModal={handleCloseModal}
-              activeActionPoint={activeActionPoint}
-              handleSubmitEditActionPoint={handleSubmitEditActionPoint}
-            />
-            <GrayBg />
-          </>
-        ) : null}
         <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
           <h1>Goals List</h1>
           <FormAddGoal handleAddGoal={handleAddGoal} />
