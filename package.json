@@ -5,7 +5,8 @@
     "client": "cd frontend && npm start",
     "server": "nodemon server.ts",
     "build": "webpack",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
   },
   "dependencies": {
     "@types/mongoose": "^5.10.3",
