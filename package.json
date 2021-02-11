@@ -5,8 +5,7 @@
     "client": "cd frontend && npm start",
     "server": "nodemon server.ts",
     "build": "webpack",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "heroku-postbuild": "npm install && npm run server"
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
