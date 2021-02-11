@@ -14,4 +14,4 @@ const goalsSchema = new Schema (
 )
 
 const Goals = mongoose.model('Goals', goalsSchema)
-module.exports = Goals
+export default Goals
