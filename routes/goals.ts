@@ -11,16 +11,29 @@ router.route("/:userId").get(async (req, res) => {
     .catch((err: any) => res.status(400).json("Error: " + err));
 });
 
+router.route("/:userId").get(async (req, res) => {
+  try {
+  const userId = req.params.userId;
+  Goal.find()
+    .where("userId")
+    .equals(userId)
+    .then((goals: any) => res.json(goals))
+  } catch (e) {
+    console.log(e)
+  }
+});
+
 router.route("/add-goal").post(async (req, res) => {
-  const id = req.body.id;
-  const title = req.body.title;
-  const actionPoints = req.body.actionPoints;
-  const userId = req.body.userId;
-  const newGoal = new Goal({ id, title, actionPoints, userId });
-  newGoal
-    .save()
-    .then(() => res.json("Goal added!"))
-    .catch((err: any) => res.status(400).json("Error: " + err));
+  try {
+    const id = req.body.id;
+    const title = req.body.title;
+    const actionPoints = req.body.actionPoints;
+    const userId = req.body.userId;
+    const newGoal = new Goal({ id, title, actionPoints, userId });
+    newGoal.save().then(() => res.json("Goal added!"));
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.route("/add-goal/:id").patch(async (req, res) => {
