@@ -2,7 +2,7 @@ import axios from "axios";
 import { ParametersType } from '../../pages/GoalsDashboard/index'
 
 export const getGoals = (userId: string) => {
-  return axios.get(`https://goalsorganizer.herokuapp.com/${userId}`).then((res) => res.data);
+  return axios.get(`https://goalsorganizer.herokuapp.com/goals/${userId}`).then((res) => res.data);
 };
 
 export const addGoal = (
@@ -12,7 +12,7 @@ export const addGoal = (
   userId: string,
 ) => {
   axios
-    .post("http://localhost:5000/goals/add-goal", {
+    .post("https://goalsorganizer.herokuapp.com/goals/add-goal", {
       id,
       title: goalTitle,
       actionPoints: [],
@@ -26,7 +26,7 @@ export const deleteGoal = (
   id: string
 ) => {
   axios
-    .delete(`http://localhost:5000/goals/delete-goal/${id}`)
+    .delete(`https://goalsorganizer.herokuapp.com/goals/delete-goal/${id}`)
     .catch((err) => console.log(err));
 };
 
@@ -38,7 +38,7 @@ export const editGoal = (
   console.log('edit goal bro', parameters)
   const { goalId } = parameters 
   axios
-    .patch(`http://localhost:5000/goals/edit-goal/${goalId}`, {
+    .patch(`https://goalsorganizer.herokuapp.com/goals/edit-goal/${goalId}`, {
       description: description,
     })
     .catch((err) => console.log(err));
@@ -51,7 +51,7 @@ export const addActionPoint = (
   actionPointId: string
 ) => {
   axios
-    .patch(`http://localhost:5000/goals/add-goal/${id}`, {
+    .patch(`https://goalsorganizer.herokuapp.com/goals/add-goal/${id}`, {
       actionPoints: actionPointTitle,
       _id: actionPointId,
     })
@@ -63,7 +63,7 @@ export const deleteActionPoint = (
   id: string
 ) => {
   axios
-    .post(`http://localhost:5000/goals/delete-action-point/${id}`, {
+    .post(`https://goalsorganizer.herokuapp.com/goals/delete-action-point/${id}`, {
       goalId: goalId,
     })
     .catch((err) => console.log(err));
@@ -75,7 +75,7 @@ export const editActionPoint = (
 ) => {
   const { goalId, id } = parameters
   axios
-    .patch(`http://localhost:5000/goals/edit-action-point/${id}`, {
+    .patch(`https://goalsorganizer.herokuapp.com/goals/edit-action-point/${id}`, {
       goalId: goalId,
       description: description,
     })
