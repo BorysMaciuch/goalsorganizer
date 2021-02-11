@@ -2,7 +2,7 @@ import axios from "axios";
 import { ParametersType } from '../../pages/GoalsDashboard/index'
 
 export const getGoals = (userId: string) => {
-  return axios.get(`http://localhost:5000/goals/${userId}`).then((res) => res.data);
+  return axios.get(`https://goalsorganizer.herokuapp.com/${userId}`).then((res) => res.data);
 };
 
 export const addGoal = (
