@@ -21,8 +21,7 @@ connection.once("open", () => {
   console.log("mongoDB database connection established successfully");
 });
 
-app.use("/goals", router);
-app.get('/', (req, res) => { res.send('Hello from Express!') } )
+app.use("/", router);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
