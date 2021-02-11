@@ -2,6 +2,7 @@
   "name": "example-create-react-app-express",
   "version": "1.0.0",
   "scripts": {
+    "start" : "node server.ts",
     "client": "cd frontend && npm start",
     "server": "nodemon server.ts",
     "build": "webpack",
