@@ -7,13 +7,7 @@ App is built with MERN stack, TypeScript and styled-components.
 
 ## TODO
 
-- add editing goal name route
 - add Dashboard, DailyGoals, 404 pages
-- add authorization
 - add error handling
-- add types to backend
-- add Context API / Redux
-- add Typography compontent for styling text
-- change Modal component to handle different functions, depending on which function we want to run on Submit onclick event
 - add form validation to Form components
 - add Spinner component
