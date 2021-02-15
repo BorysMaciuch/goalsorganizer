@@ -13,13 +13,13 @@ router.route("/:userId").get(async (req, res) => {
 
 router.route("/:userId").get(async (req, res) => {
   try {
-  const userId = req.params.userId;
-  Goal.find()
-    .where("userId")
-    .equals(userId)
-    .then((goals: any) => res.json(goals))
+    const userId = req.params.userId;
+    Goal.find()
+      .where("userId")
+      .equals(userId)
+      .then((goals: any) => res.json(goals));
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 });
 
@@ -48,7 +48,11 @@ router.route("/add-goal/:id").patch(async (req, res) => {
           actionPoints: { description: actionPoint, _id: actionPointId },
         },
       },
-      { new: true, upsert: true }
+      { new: true, upsert: true },
+      function (err: any, action: any) {
+        if (err) throw err;
+        console.log(action);
+      }
     );
   } catch (e) {
     console.log(e);
