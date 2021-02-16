@@ -8,13 +8,14 @@ interface ContainerProps {
     height?: string;
     wrap?: boolean;
     padding?: string;
+    justify?: string;
 }
 export const Container = styled.div<ContainerProps>`
     display: flex;
     flex-wrap: ${({wrap}) =>  wrap ? 'wrap' : 'nowrap'};
     flex-direction: ${({row}) => row ? 'row' : 'column'};
-    justify-content: center;
     align-items: center;
+    justify-content: ${({justify}) => justify ? justify : 'center'};
     margin: 10px auto;
     padding: ${({padding}) => padding ? padding : '2px'};
     border-radius: ${({ theme }) => theme.radius.normal};

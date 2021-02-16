@@ -47,14 +47,18 @@ export const Goal: React.FC<GoalType> = ({ title, goalId }) => {
           </>
         ) : null}
     <Container bgColor={theme.colors.white} shadow={theme.shadow.normal} width='500px'>
-      <SubHeading>{title}</SubHeading>
-      <FormAddActionPoint id={goalId} />
-      <ActionPointsList />
       <Container row>
-        <EditButton onClick={handleOpenModal}>
+      <SubHeading>{title}</SubHeading>
+      <EditButton onClick={handleOpenModal} title='Edit goal name'>
           <img src={EditIcon} width="20px" height="20px" alt="Edit Button" />
         </EditButton>
-        <DeleteButton onClick={async (e) => await handleDeleteGoal(e, goalId)}>
+
+      </Container>
+      <FormAddActionPoint id={goalId} />
+      <ActionPointsList />
+      <Container row justify='flex-end'>
+      
+        <DeleteButton title='Delete goal' onClick={async (e) => await handleDeleteGoal(e, goalId)}>
           <img
             src={DeleteIcon}
             width="20px"

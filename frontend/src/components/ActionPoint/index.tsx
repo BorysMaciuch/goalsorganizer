@@ -42,10 +42,10 @@ export const ActionPoint: React.FC<ActionPointType> = ({ description, id }) => {
         ) : null}
     <Container row key={uuidv4()}>
       {description}
-      <EditButton onClick={handleOpenModal}>
+      <EditButton onClick={handleOpenModal} title='Edit action point description'>
         <img src={EditIcon} width="20px" height="20px" alt="Edit Button" />
       </EditButton>
-      <DeleteButton onClick={(e) => handleDeleteActionPoint(e, goalId, id)}>
+      <DeleteButton onClick={(e) => handleDeleteActionPoint(e, goalId, id)} title='Delete action point'>
         <img src={DeleteIcon} width="20px" height="20px" alt="Delete Button" />
       </DeleteButton>
     </Container>
