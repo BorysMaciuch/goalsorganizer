@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FormStyled } from "../styled";
 import { InputStyled } from "../Input/styled";
 import { LabelStyled } from "../Label/styled";
-import { RelativeContainer } from "../../Container/styled";
+import { Container, RelativeContainer } from "../../Container/styled";
 import GoalsContext from "../../../services/context/GoalsContext";
 
 export interface FormAddActionPointType {

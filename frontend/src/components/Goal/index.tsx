@@ -9,6 +9,7 @@ import EditIcon from "../../assets/edit.svg";
 import DeleteIcon from "../../assets/delete.svg";
 import { Modal } from '../../components/Modal'
 import { GrayBg } from '../../components/Modal/styled'
+import { SubHeading } from '../Typography/styled'
 
 export interface GoalType {
   title: string;
@@ -45,8 +46,8 @@ export const Goal: React.FC<GoalType> = ({ title, goalId }) => {
             <GrayBg />
           </>
         ) : null}
-    <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
-      <h3>{title}</h3>
+    <Container bgColor={theme.colors.white} shadow={theme.shadow.normal} width='500px'>
+      <SubHeading>{title}</SubHeading>
       <FormAddActionPoint id={goalId} />
       <ActionPointsList />
       <Container row>

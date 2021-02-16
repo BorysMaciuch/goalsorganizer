@@ -3,6 +3,7 @@ import FormAddGoal from "../../components/Form/FormAddGoal";
 import { Container } from "../../components/Container/styled";
 import GoalsList from "../../components/GoalsList";
 import { theme } from "../../styles/index";
+import { SubHeading } from '../../components/Typography/styled'
 import {
   getGoals,
   addGoal,
@@ -148,9 +149,9 @@ const GoalsDashboard: React.FC = () => {
         handleSubmitEditGoal,
       }}
     >
-      <Container bgColor={theme.colors.lightBlue}>
+      <Container bgColor={theme.colors.lightBlue} width='85%'>
         <Container bgColor={theme.colors.white} shadow={theme.shadow.normal}>
-          <h1>Goals List</h1>
+          <SubHeading>Goals List</SubHeading>
           <FormAddGoal handleAddGoal={handleAddGoal} />
         </Container>
         <GoalsList />

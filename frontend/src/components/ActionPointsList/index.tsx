@@ -9,9 +9,9 @@ export const ActionPointsList: React.FC = () => {
   const { actionPoints } = useContext(GoalContext);
 
   return (
-    <Container bgColor={theme.colors.white}>
+    <Container bgColor={theme.colors.white} width='100%' scroll height='200px'>
       {actionPoints.map((actionPoint) => (
-        <Container key={uuidv4()}>
+        <Container key={uuidv4()} width='100%' >
           <ActionPoint
             description={actionPoint.description}
             id={actionPoint._id}
